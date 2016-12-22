@@ -24,7 +24,7 @@ app.listen(port, (error) => {
     }
 })
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/index.html')
+    res.sendFile(__dirname + '/index.html')
 })
 app.get('/pics', (req, res) => {
     http.get('http://api-fotki.yandex.ru/api/top/?format=json', (resp) => {

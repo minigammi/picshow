@@ -5,7 +5,10 @@ export const CLOSE_VIEWER = 'CLOSE_VIEWER'
 export const SELECT_PIC = 'SELECT_PIC'
 export const SHOW_NEXT_PIC = 'SHOW_NEXT_PIC'
 
-const pathToApi = '/pics'
+let pathToApi = 'https://cors-anywhere.herokuapp.com/http://api-fotki.yandex.ru/api/top/?format=json'
+if (module.hot) {
+    pathToApi = '/pics'
+}
 
 const parseResponse = (json) => {
     return json.entries.map((item, index) => ({
