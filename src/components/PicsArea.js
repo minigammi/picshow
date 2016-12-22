@@ -5,7 +5,7 @@ class PicsArea extends Component {
     render() {
         const { isFetching, pics, onPreviewClickHandler } = this.props
         return (
-            <div className="pics-area">
+            <div className="area">
                 {isFetching ?
                     <h2>Loading...</h2> :
                     pics.map((pic) => (

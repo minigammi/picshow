@@ -2,23 +2,30 @@ div, body {
     margin: 0;
     padding: 0;
 }
-.pic-preview-wrapper {
+
+.area {
+    margin: 50px 100px;
+}
+
+.preview__wrapper {
     display: inline-block;
     margin: 9px;
-    padding: 5px;
-    border: 1px solid black;
+    border: 2px solid #a2b2ab;
     width: 150px;
-    height: 150px;
-    background-color: linen;
+    height: 100px;
+    overflow: hidden;
+    background-color: #a2b2ab;
 }
-.pic-preview-wrapper:hover {
-    background-color: whitesmoke;
+.preview__wrapper:hover {
+    border-color: #1b1e1d;
+    background-color: #1b1e1d;
     cursor: pointer;
 }
-.pic-preview-wrapper img {
+.preview__image {
     display: block;
     margin: auto;
-    max-width: 700px;
+    max-width: 150px;
+    max-height: 100px;
 }
 
 .viewer {
