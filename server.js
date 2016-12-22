@@ -12,7 +12,7 @@ var compiler = webpack(webpackConfig)
 app.use(webpackDevMiddleware(compiler, {
     noInfo: true,
     publicPath: webpackConfig.output.publicPath,
-    index: 'index.html',
+    index: 'index.dev.html',
 }))
 app.use(webpackHotMiddleware(compiler))
 
@@ -24,7 +24,7 @@ app.listen(port, (error) => {
     }
 })
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html')
+    res.sendFile(__dirname + '/index.dev.html')
 })
 app.get('/pics', (req, res) => {
     http.get('http://api-fotki.yandex.ru/api/top/?format=json', (resp) => {
