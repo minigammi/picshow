@@ -1,4 +1,3 @@
-// import { combineReducers } from 'redux'
 import {
     GET_PICS_REQUEST,
     GET_PICS_SUCCESS,
@@ -10,9 +9,10 @@ import {
 const pics = (state = {
     isFetching: false,
     pics: [],
-    isEnabled: false,
-    currentPicId: -1
+    viewerEnabled: false,
+    viewerCurrentIndex: -1
 }, action) => {
+
     switch (action.type) {
     case GET_PICS_REQUEST:
         return {
@@ -28,29 +28,30 @@ const pics = (state = {
     case SELECT_PIC:
         return {
             ...state,
-            isEnabled: true,
-            currentPicId: action.id,
+            viewerEnabled: true,
+            viewerCurrentIndex: action.index,
         }
     case CLOSE_VIEWER:
         return {
             ...state,
-            isEnabled: false,
+            viewerEnabled: false,
         }
     case SHOW_NEXT_PIC:
         return {
-                ...state,
-                currentPicId: getNextPic(state.pics, action.id, action.toLeft),
-            }
+            ...state,
+            viewerCurrentIndex: getNextPic(state.pics, action.index, action.toLeft),
+        }
     default:
         return state
     }
+
 }
 
-function getNextPic(pics, id, toLeft) {
-    let nextId = toLeft ? id - 1 : id + 1
-    if (nextId == pics.length) return 0
-    if (nextId < 0) return pics.length - 1
-    return nextId
+function getNextPic(pics, index, toLeft) {
+    let nextIndex = toLeft ? index - 1 : index + 1
+    if (nextIndex == pics.length) return 0
+    if (nextIndex < 0) return pics.length - 1
+    return nextIndex
 }
 
 export default pics

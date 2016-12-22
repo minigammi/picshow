@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import PicsArea from '../components/PicsArea'
 import Viewer from '../components/Viewer'
-import { fetchPics, onPreviewClickHandler, closeViewer, showNextPic } from '../actions'
+import { fetchPics, onPreviewClickHandler, closeViewer, onNextHandler } from '../actions'
 
 class App extends Component {
 
@@ -12,23 +12,29 @@ class App extends Component {
     }
 
     render () {
+        if (this.props.isFetching) return <h2>Loading...</h2>
+        return this.renderContainer()
+    }
+
+    renderContainer() {
         const {
-            isFetching,
             pics,
-            isEnabled,
-            currentPicId,
+            viewerEnabled,
+            viewerCurrentIndex,
             onPreviewClickHandler,
             closeViewer,
-            showNextPic,
+            onNextHandler,
         } = this.props
+
         let picForViewer = null
-        if (pics.length && currentPicId != -1) {
-            picForViewer = pics[currentPicId]
+        if (pics.length && viewerCurrentIndex != -1) {
+            picForViewer = pics[viewerCurrentIndex]
         }
+
         return (
             <div>
-                <PicsArea isFetching={isFetching} pics={pics} onPreviewClickHandler={onPreviewClickHandler} />
-                <Viewer isEnabled={isEnabled} pic={picForViewer} closeViewer={closeViewer} showNext={showNextPic} />
+                <PicsArea pics={pics} onPreviewClickHandler={onPreviewClickHandler} />
+                <Viewer isEnabled={viewerEnabled} pic={picForViewer} close={closeViewer} next={onNextHandler} />
             </div>
         )
     }
@@ -36,13 +42,17 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-    const { isFetching, pics } = state
-    const { isEnabled, currentPicId } = state
+    const {
+        isFetching,
+        pics,
+        viewerEnabled,
+        viewerCurrentIndex,
+    } = state
     return {
         isFetching,
         pics,
-        isEnabled,
-        currentPicId,
+        viewerEnabled,
+        viewerCurrentIndex,
     }
 }
 
@@ -51,7 +61,7 @@ const mapDispatchToProps = dispatch => {
         fetchPics: bindActionCreators(fetchPics, dispatch),
         onPreviewClickHandler: bindActionCreators(onPreviewClickHandler, dispatch),
         closeViewer: bindActionCreators(closeViewer, dispatch),
-        showNextPic: bindActionCreators(showNextPic, dispatch),
+        onNextHandler: bindActionCreators(onNextHandler, dispatch),
     }
 }
 
