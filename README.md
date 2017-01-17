@@ -1,6 +1,7 @@
 # Picshow
 
 Small reactjs + redux project. This is gallery with images from yandex.fotki API.
+Demo: [https://minigammi.github.io/picshow/](https://minigammi.github.io/picshow/)
 
 ---
 First install all dependencies
