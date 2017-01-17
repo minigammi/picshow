@@ -94,4 +94,16 @@ class Viewer extends Component {
 
 }
 
+Viewer.propTypes = {
+    isEnabled: React.PropTypes.bool.isRequired,
+    pic: React.PropTypes.object,
+    close: React.PropTypes.func,
+    next: React.PropTypes.func,
+}
+
+Viewer.defaultProps = {
+    isEnabled: false,
+    pic: {},
+}
+
 export default Viewer

@@ -6,4 +6,11 @@ const PicPreview = ({ title, source, index, onClick }) => (
     </div>
 )
 
+PicPreview.propTypes = {
+    title: React.PropTypes.string,
+    source: React.PropTypes.string,
+    index: React.PropTypes.number,
+    onClick: React.PropTypes.func,
+}
+
 export default PicPreview

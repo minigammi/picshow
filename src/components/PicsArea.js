@@ -15,4 +15,9 @@ const PicsArea = ({ pics, onPreviewClickHandler }) => (
     </div>
 )
 
+PicsArea.propTypes = {
+    pics: React.PropTypes.array.isRequired,
+    onPreviewClickHandler: React.PropTypes.func.isRequired,
+}
+
 export default PicsArea
